@@ -2,22 +2,24 @@ package main
 
 import (
 	"log"
-//	"encoding/json"
+	"flag"
  	"time"
 	"math/rand"
 	"net/http"
 	"code.google.com/p/go.net/websocket"
 )
 
-var addr = ":8080"
+var addr = flag.String("addr", ":8080", "http service address")
 
 func main() {
+	flag.Parse()
+	
 	http.HandleFunc("/", index_handler)
 	http.Handle("/static/", http.FileServer(http.Dir(".")))
 	http.Handle("/websocket", websocket.Handler(websocket_handler))
 	
-	log.Println("starting web server at", addr)
-	err := http.ListenAndServe(addr, nil)
+	log.Println("starting web server at", *addr)
+	err := http.ListenAndServe(*addr, nil)
 	if err != nil {
 		log.Fatalln("http.ListenAndServe:", err)
 	}
