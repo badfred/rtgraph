@@ -8,3 +8,8 @@ Builds on top of
 * Flot charts http://www.flotcharts.org
 * Go http://golang.org
 
+Installation
+------------
+
+Clone repository, cd into the rtgraph directory and run "go run rtgraph.go". The real-time graph will be accessible in your web browser at localhost:8080 by default.
+
