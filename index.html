@@ -13,7 +13,6 @@
 	var data = [];
 	var websocket;
 	var plot;
-	var pointer = 0;
 
 	function onReady() {
 
@@ -24,7 +23,7 @@
 
 		plot = $.plot("#placeholder", [ data ], {
 			series: {
-				shadowSize: 5	// Drawing is faster without shadows
+				shadowSize: 5
 			},
 			yaxis: {
 				min: 0,
@@ -44,8 +43,6 @@
 	function onMessage(evt) {
 		data = data.slice(1);
 		data.push(jQuery.parseJSON(evt.data));
-		//data.push([pointer, 50]);
-		pointer = pointer + 1;
 
 		plot.setData([data]);
 		plot.setupGrid();
